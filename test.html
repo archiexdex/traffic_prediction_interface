@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+</head>
+
+<body>
+    <!-- <div id="vdname"></div>
+    <div id="starttime"></div>
+    <div id="endtime"></div> -->
+    <div id="test" style="width:auto;height:auto;"></div>
+    <script src="tools/HttpHelper.js"></script>
+    <script src="draw_vd/draw.js"></script>
+    <script>
+        const positionUrl = "http://140.113.210.4:9487/positions";
+        const dayUrl = "http://140.113.210.4:9487/day";
+        const minuteUrl = "http://140.113.210.4:9487/minute";
+        let vdName = "V1040A0_0";
+        let startTime = "2015-10-01";
+        let endTime = "2015-12-31";
+        getChart(vdName, startTime, endTime, "test");
+
+        document.write("vd name: " + vdName + " ");
+        document.write("</br>");
+        document.write(startTime + " ~ ");
+        document.write(endTime + " ");
+    </script>
+
+
+</body>
+
+</html>
