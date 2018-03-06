@@ -5,36 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>test</title>
+    <title>vd heatmap</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="src/css/screamgraph.css">
 </head>
 
 <body>
-
     <input type="text" value="VP8GX40_0" id="vdName">
-    <input type="text" value="2016-01-01" id="startTime">
-    <input type="text" value="2016-01-15" id="endTime">
+    <input type="text" value="2015-07-01" id="startTime">
+    <input type="text" value="2015-07-10" id="endTime">
     <input type="button" value="submit" onclick="go()">
-    <div id="test"></div>
+    <div id="chart"></div>
     <script src="src/js/HttpHelper.js"></script>
     <script src="src/js/draw.js"></script>
     <script>
         const positionUrl = "http://140.113.210.4:9487/positions";
         const dayUrl = "http://140.113.210.4:9487/day";
         const minuteUrl = "http://140.113.210.4:9487/minute";
+        const heatmapUrl = "http://140.113.210.4:9487/heatmap";
+        const streamgraphpUrl = "http://140.113.210.4:9487/streamgraph";
 
         function go() {
             let vdName = document.getElementById("vdName").value;
             let startTime = document.getElementById("startTime").value;
             let endTime = document.getElementById("endTime").value;
-            getLineChart(vdName, startTime, endTime, "test", screen.height / 2, false);
+            // let vdName = "VP8GX40_0";
+            // let startTime = "2015-07-01";
+            // let endTime = "2015-12-31";
+            // getHeatMap(vdName, startTime, endTime, "heatmap");
+            // getD3HeatMap(vdName, startTime, endTime, "heatmap");
+            getD3Screamgraph(vdName, startTime, endTime, "chart");
         }
         go();
     </script>
-
-
-
 </body>
 
-</htm
+</html>

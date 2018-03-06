@@ -77,10 +77,10 @@ let control_time = {
             endTime = timeUIchild_end.value;
 
             timeUIchild_begin.oninput = function() {
-                //TODO:
+                beginTime = timeUIchild_begin.value;
             }
             timeUIchild_end.oninput = function() {
-                //TODO:
+                endTime = timeUIchild_end.value;
             }
 
             var str = document.createElement('div');
@@ -108,6 +108,13 @@ let control_chart = {
             chart.div.id = 'chart' + i;
             chart.div.innerHTML = i;
 
+            // lest number image
+            chart.img = document.createElement('img');
+            chart.img.src = icon + i + '.png';
+            chart.img.className = 'image';
+            chart.div.appendChild(chart.img);
+
+            // the plotly
             let info = document.createElement('div');
             info.id = 'info' + i;
             chart.div.appendChild(info);
@@ -115,9 +122,8 @@ let control_chart = {
             chart.closebtn = document.createElement('div');
             chart.closebtn.className = 'close';
             chart.closebtn.index = i;
-            chart.closebtn.onclick = function() {
+            chart.closebtn.onclick = () => {
                 document.getElementById('chart' + i).remove();
-
                 map_location.occupy.pop();
                 map_location.release.push(i);
                 chart.markerindex.setIcon(null);
@@ -266,7 +272,8 @@ function updateMarkers(query) {
                         fatherblock.appendChild(map_chart.div);
                         map_location.occupy.push(1);
                     }
-                    getChart(vdName, beginTime, endTime, 'info' + index);
+                    reChart(vdName, beginTime, endTime, 'info' + index, map_chart.div.style.height, false);
+                    // getChart(vdName, beginTime, endTime, 'info' + index);
                     map_main.setCenter({
                         lat: gps.lat,
                         lng: gps.lng

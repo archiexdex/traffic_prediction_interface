@@ -94,19 +94,12 @@ input[type="date"] {
 }
 
 
-/* .chart{
-    margin:15px;
-    position:absolute;
-    background:white;
-} */
-
-
 /* set the close icon */
 
 .close {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: -8px;
+    top: -10px;
     width: 31px;
     height: 31px;
     background: white;
@@ -163,4 +156,11 @@ input[type="date"] {
     background: white;
     border-color: black;
     -webkit-box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
+}
+
+.image {
+    position: absolute;
+    right: 0px;
+    top: 90%;
+    z-index: 100;
 }
