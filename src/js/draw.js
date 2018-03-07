@@ -87,12 +87,14 @@ function getLineChart(vdName, startTime, endTime, divName, divHeight, isMinute) 
             title: vdName + " start: " + startTime + " end: " + endTime,
             margin: {
                 atuoexpand: false,
-                l: 30,
-                t: 13,
-                r: 10,
-                b: 45
+                l: 20,
+                r: 20,
+                t: 30,
+                b: 10
             },
-            height: parseInt(divHeight),
+            // width = 500,
+            height: screen.height,
+            // height: parseInt(divHeight),
             showlegend: true,
             legend: { "orientation": "h" }
         };
@@ -101,6 +103,7 @@ function getLineChart(vdName, startTime, endTime, divName, divHeight, isMinute) 
             displayModeBar: false,
             scrollZoom: true
         };
+        Plotly.purge(divName);
         Plotly.newPlot(divName, inputData, layout, config);
 
         let myDiv = document.getElementById(divName);
@@ -130,38 +133,37 @@ function getLineChart(vdName, startTime, endTime, divName, divHeight, isMinute) 
             console.log("XDDDD");
         });
 
-        myDiv.on('plotly_relayout', (eventdata) => {
-            if (eventdata['dragmode'] === undefined) {
-                let update = {
-                    title: 'some new title', // updates the title
-                    'xaxis.range[0]': timestamp2date(eventdata['xaxis.range[0]']),
-                    'xaxis.range[1]': eventdata['xaxis.range[1]'],
-                    'yaxis.range[0]': eventdata['yaxis.range[0]'],
-                    'yaxis.range[1]': eventdata['yaxis.range[1]'],
-                };
-                let startTime = timestamp2date(eventdata['xaxis.range[0]']);
-                let endTime = timestamp2date(eventdata['xaxis.range[1]']);
-
-                if (startTime < "2015-01-01 01:05")
-                    startTime = "2015-01-01 01:05";
-                if (endTime < "2015-01-02 01:10")
-                    endTime = "2015-01-02 01:10";
-
-                if (endTime > "2017-01-01 00:00")
-                    endTime = "2017-01-01 00:00";
-
-
-                if (dayDiff(endTime, startTime) < 6 && !isMinute) {
-                    getLineChart(vdName, startTime, endTime, divName, divHeight, true);
-                } else if (isMinute) {
-                    if (dayDiff(endTime, startTime) >= 6)
-                        getLineChart(vdName, startTime, endTime, divName, divHeight, false);
-                } else {
-                    getLineChart(vdName, startTime, endTime, divName, divHeight, false);
-                }
-
-            }
-        });
+        // myDiv.on('plotly_relayout', (eventdata) => {
+        //     if (eventdata['dragmode'] === undefined) {
+        //         let update = {
+        //             title: 'some new title', // updates the title
+        //             'xaxis.range[0]': timestamp2date(eventdata['xaxis.range[0]']),
+        //             'xaxis.range[1]': eventdata['xaxis.range[1]'],
+        //             'yaxis.range[0]': eventdata['yaxis.range[0]'],
+        //             'yaxis.range[1]': eventdata['yaxis.range[1]'],
+        //         };
+        //         let startTime = timestamp2date(eventdata['xaxis.range[0]']);
+        //         let endTime = timestamp2date(eventdata['xaxis.range[1]']);
+        //         if (startTime < "2015-01-01 01:05")
+        //             startTime = "2015-01-01 01:05";
+        //         if (endTime < "2015-01-02 01:10")
+        //             endTime = "2015-01-02 01:10";
+        //         if (endTime > "2017-01-01 00:00")
+        //             endTime = "2017-01-01 00:00";
+        //         if (dayDiff(endTime, startTime) < 6 && !isMinute) {
+        //             Plotly.purge(divName);
+        //             getLineChart(vdName, startTime, endTime, divName, divHeight, true);
+        //         } else if (isMinute) {
+        //             if (dayDiff(endTime, startTime) >= 6) {
+        //                 Plotly.purge(divName);
+        //                 getLineChart(vdName, startTime, endTime, divName, divHeight, false);
+        //             }
+        //         } else {
+        //             Plotly.purge(divName);
+        //             getLineChart(vdName, startTime, endTime, divName, divHeight, false);
+        //         }
+        //     }
+        // });
     });
 }
 
