@@ -7,16 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>vd heatmap</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href="src/css/screamgraph.css">
 </head>
 
 <body>
     <input type="text" value="VP8GX40_0" id="vdName">
-    <input type="text" value="2015-07-01" id="startTime">
-    <input type="text" value="2015-07-10" id="endTime">
+    <input type="text" value="2015-06-01" id="startTime">
+    <input type="text" value="2015-06-30" id="endTime">
     <input type="button" value="submit" onclick="go()">
-    <div id="chart"></div>
+    <div class="chart"></div>
     <script src="src/js/HttpHelper.js"></script>
     <script src="src/js/draw.js"></script>
     <script>
@@ -30,12 +30,8 @@
             let vdName = document.getElementById("vdName").value;
             let startTime = document.getElementById("startTime").value;
             let endTime = document.getElementById("endTime").value;
-            // let vdName = "VP8GX40_0";
-            // let startTime = "2015-07-01";
-            // let endTime = "2015-12-31";
-            // getHeatMap(vdName, startTime, endTime, "heatmap");
-            // getD3HeatMap(vdName, startTime, endTime, "heatmap");
-            getD3Screamgraph(vdName, startTime, endTime, "chart");
+            // getD3Screamgraph(vdName, startTime, endTime, "chart");
+            myChart(vdName, startTime, endTime, "chart");
         }
         go();
     </script>

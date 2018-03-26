@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,17 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>test</title>
+    <title>linechart</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
 
-    <input type="text" value="VP8GX40_0" id="vdName">
+    <input type="text" value="VPJFZ00_0" id="vdName">
     <input type="text" value="2015-01-01" id="startTime">
     <input type="text" value="2016-12-31" id="endTime">
-    <input type="button" value="submit" onclick="go()">
+    <input type="button" value="day" onclick="go(false)">
+    <input type="button" value="minute" onclick="go(true)">
     <div id="test"></div>
     <script src="src/js/HttpHelper.js"></script>
     <script src="src/js/draw.js"></script>
@@ -24,17 +26,17 @@
         const dayUrl = "http://140.113.210.4:9487/day";
         const minuteUrl = "http://140.113.210.4:9487/minute";
 
-        function go() {
+        function go(isMinute) {
             let vdName = document.getElementById("vdName").value;
             let startTime = document.getElementById("startTime").value;
             let endTime = document.getElementById("endTime").value;
-            getLineChart(vdName, startTime, endTime, "test", screen.height / 2, false);
+            getLineChart(vdName, startTime, endTime, "test", screen.height / 2, isMinute);
         }
-        go();
+        go(false);
     </script>
 
 
 
 </body>
 
-</htm
+</ht
